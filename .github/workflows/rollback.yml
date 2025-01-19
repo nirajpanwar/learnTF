@@ -41,4 +41,4 @@ jobs:
       run: aws s3 cp s3://bckt-neeraj/prod/terraform.tfstate ./terraform.tfstate
 
     - name: Apply Previous State
-      run: terraform apply -auto-approve ./terraform.tfstate
+      run: terraform apply -auto-approve
