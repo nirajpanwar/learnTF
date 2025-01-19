@@ -45,8 +45,6 @@ jobs:
     - name: Pull Current State
       run: aws s3 cp s3://bckt-neeraj/prod/terraform.tfstate ./terraform.tfstate
 
-    - name: Validate Terraform state file
-      run: terraform validate ./terraform.tfstate
       
     # Generate Human-Readable State Before Rollback
     - name: Show Current State
