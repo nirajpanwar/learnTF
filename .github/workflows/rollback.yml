@@ -7,6 +7,10 @@ on:
         description: "Reason for rollback"
         required: true
         default: "Manual rollback requested"
+      confirm:
+        description: "Type 'yes' to confirm rollback"
+        required: true
+        default: "no"
 
 jobs:
   terraform-rollback:
