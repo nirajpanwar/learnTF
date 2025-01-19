@@ -40,12 +40,23 @@ jobs:
       with:
         terraform_version: 1.5.0
 
+
     # 4. Fetch the Latest State File
     - name: Pull Current State
       run: aws s3 cp s3://bckt-neeraj/prod/terraform.tfstate ./terraform.tfstate
+
+    # Generate Human-Readable State Before Rollback
+    - name: Show Current State
+      run: terraform show ./terraform.tfstate > pre_rollback_state.txt
+
 
     - name: Initialize Terraform
       run: terraform init
       
     - name: Apply Previous State
       run: terraform apply -auto-approve
+
+      
+    # Show Human-Readable State After Rollback
+    - name: Show Post-Rollback State
+      run: terraform show > post_rollback_state.txt
