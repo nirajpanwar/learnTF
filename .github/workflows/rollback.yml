@@ -40,5 +40,8 @@ jobs:
     - name: Pull Current State
       run: aws s3 cp s3://bckt-neeraj/prod/terraform.tfstate ./terraform.tfstate
 
+    - name: Initialize Terraform
+      run: terraform init
+      
     - name: Apply Previous State
       run: terraform apply -auto-approve
