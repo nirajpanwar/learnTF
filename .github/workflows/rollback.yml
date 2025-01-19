@@ -38,8 +38,7 @@ jobs:
 
     # 4. Fetch the Latest State File
     - name: Pull Current State
-      run: terraform state pull > current_state.tfstate
+      run: aws s3 cp s3://bckt-neeraj/prod/terraform.tfstate ./terraform.tfstate
 
-    # 5. Rollback to Previous State
     - name: Apply Previous State
-      run: terraform apply -auto-approve ./current_state.tfstate
+      run: terraform apply -auto-approve ./terraform.tfstate
