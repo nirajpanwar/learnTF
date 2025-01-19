@@ -60,6 +60,11 @@ jobs:
     - name: Apply Previous State
       run: terraform apply -auto-approve
 
+    - name: Show Terraform Debug Logs
+      run: |
+        export TF_LOG=DEBUG
+        terraform show ./terraform.tfstate
+
       
     # Show Human-Readable State After Rollback
     - name: Show Post-Rollback State
