@@ -48,7 +48,12 @@ jobs:
         aws s3 cp s3://bckt-neeraj/prod/terraform.tfstate ./terraform.tfstate
         ls -l ./terraform.tfstate 
 
-      
+
+    - name: Show Terraform Debug Logs
+      run: |
+        export TF_LOG=DEBUG
+        terraform show ./terraform.tfstate
+
     # Generate Human-Readable State Before Rollback
     - name: Show Current State
       run: terraform show ./terraform.tfstate > pre_rollback_state.txt
