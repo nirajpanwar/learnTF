@@ -43,7 +43,10 @@ jobs:
 
     # 4. Fetch the Latest State File
     - name: Pull Current State
-      run: aws s3 cp s3://bckt-neeraj/prod/terraform.tfstate ./terraform.tfstate
+      run: | 
+        pwd && ls -l
+        aws s3 cp s3://bckt-neeraj/prod/terraform.tfstate ./terraform.tfstate
+        ls -l ./terraform.tfstate 
 
       
     # Generate Human-Readable State Before Rollback
@@ -61,3 +64,13 @@ jobs:
     # Show Human-Readable State After Rollback
     - name: Show Post-Rollback State
       run: terraform show > post_rollback_state.txt
+
+
+    # 10. Upload Rollback State Files as Artifacts
+    - name: Upload Rollback State Files
+      uses: actions/upload-artifact@v3
+      with:
+        name: rollback-state-files
+        path: |
+          pre_rollback_state.txt
+          post_rollback_state.txt
