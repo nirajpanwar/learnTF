@@ -25,7 +25,7 @@ jobs:
             aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
             aws-region: ${{env.aws_region}}
   
-        - name: terraform init
+        - name: List all
           run: |
             ls -al
             #terraform init -reconfigure -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=prod/${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
