@@ -48,7 +48,7 @@ jobs:
       if: success()
       run: terraform apply -auto-approve tfplan
 
-    # 7. Rollback on Failure
+    # 7. Rollback on Failure (Automatic)
     - name: Terraform Rollback
       if: failure()
       run: |
@@ -56,4 +56,5 @@ jobs:
         echo "Fetching the previous state file..."
         aws s3 cp s3://bckt-neeraj/prod/terraform.tfstate ./terraform.tfstate
         echo "Reverting to the previous state..."
-        terraform apply -auto-approve ./terraform.tfstate
+        terraform init
+        terraform apply -auto-approve 
