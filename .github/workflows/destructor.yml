@@ -29,6 +29,7 @@ jobs:
           run: |
             ls -al
             terraform init -reconfigure -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=prod/${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
+            terraform state rm aws_s3_bucket.example ${{ env.BUCKET }} || true
             terraform import aws_s3_bucket.example ${{ env.BUCKET }}
             terraform plan
             ls -al 
