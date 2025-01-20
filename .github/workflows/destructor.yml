@@ -32,6 +32,11 @@ jobs:
             terraform import aws_s3_bucket.example ${{ env.BUCKET }}
             terraform plan
             ls -al 
+
+        - name: Empty S3 bucket
+          run: |
+            aws s3 rm s3://${{ env.BUCKET }} --recursive
+
             
         - name: destroy
           run: |
