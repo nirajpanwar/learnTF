@@ -27,7 +27,7 @@ jobs:
   
         - name: terraform init
           run: |
-            terraform init -reconfigure -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
+            terraform init -reconfigure -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=prod/${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
             
         - name: destroy
           run: |
