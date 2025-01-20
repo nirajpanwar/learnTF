@@ -1,9 +1,6 @@
 name: Terraform CI/CD Pipeline with Rollback
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch: # Allows manual triggers
 
 jobs:
