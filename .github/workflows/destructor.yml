@@ -3,7 +3,7 @@ name: destroy
 on:
   workflow_dispatch:
 env:
-  BUCKET: npneeraj-bkt
+  BUCKET: neeraj-bckt
   TFSTATE_FILE: terraform.tfstate
   aws_region: us-east-1
 
