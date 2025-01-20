@@ -5,6 +5,7 @@ resource "aws_s3_bucket" "example" {
   versioning {
     enabled = var.enable_versioning
   }
+ force_destroy = true 
 
 }
 
