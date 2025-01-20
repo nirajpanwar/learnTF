@@ -36,7 +36,7 @@ jobs:
 
         - name: Empty S3 bucket
           run: |
-            aws s3 rm s3://${{ env.BUCKET }} --recursive
+            aws s3 rm s3://${{ env.BUCKET }}/prod --recursive
 
             
         - name: destroy
