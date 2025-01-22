@@ -39,9 +39,9 @@ jobs:
             terraform state list | grep aws_s3_bucket.example || true
             terraform import aws_s3_bucket.example bckt-neeraj
             
-        # - name: Empty S3 bucket
-        #   run: |
-        #     aws s3 rm s3://${{ env.BUCKET }} --recursive
+        - name: Empty S3 bucket
+          run: |
+            aws s3 rm s3://${{ env.BUCKET }} --recursive
 
             
         - name: destroy
