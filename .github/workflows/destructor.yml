@@ -29,15 +29,16 @@ jobs:
           run: |
             ls -al
             terraform init -reconfigure -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=prod/${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
-            # terraform state rm aws_s3_bucket.example || true
+            terraform state rm aws_s3_bucket.example || true
+            terraform state list
             # terraform import aws_s3_bucket.example ${{ env.BUCKET }} || true
             # terraform plan
             # ls -al 
             # Step 5: Import the S3 Bucket (if necessary)
-        # - name: Import S3 Bucket
-        #   run: |
-        #     terraform state list | grep aws_s3_bucket.example || true
-        #     terraform import aws_s3_bucket.example bckt-neeraj
+        - name: Import S3 Bucket
+          run: |
+            terraform state list | grep aws_s3_bucket.example || true
+            terraform import aws_s3_bucket.example bckt-neeraj
             
         - name: Empty S3 bucket
           run: |
