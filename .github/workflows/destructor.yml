@@ -50,4 +50,4 @@ jobs:
           
         - name: destroy
           run: |
-            terraform destroy -auto-approve
+            TF_LOG=DEBUG terraform destroy -auto-approve
