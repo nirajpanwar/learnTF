@@ -28,7 +28,7 @@ jobs:
         - name: List all
           run: |
             ls -al
-            # terraform init -reconfigure -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=prod/${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
+            terraform init -reconfigure -backend-config="bucket=${{ env.BUCKET }}" -backend-config="key=prod/${{ env.TFSTATE_FILE }}" -backend-config="region=${{ env.aws_region }}"
             # terraform state rm aws_s3_bucket.example || true
             # terraform import aws_s3_bucket.example ${{ env.BUCKET }} || true
             # terraform plan
@@ -39,12 +39,11 @@ jobs:
             terraform state list | grep aws_s3_bucket.example || true
             terraform import aws_s3_bucket.example bckt-neeraj
             
-        - name: Empty S3 bucket
-          run: |
-            aws s3 rm s3://${{ env.BUCKET }} --recursive
+        # - name: Empty S3 bucket
+        #   run: |
+        #     aws s3 rm s3://${{ env.BUCKET }} --recursive
 
             
         - name: destroy
           run: |
-            terraform init
             terraform destroy -auto-approve
